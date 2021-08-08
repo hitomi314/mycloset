@@ -37,7 +37,7 @@
 - 体格や骨格、肌の色に合わせて似合う服を考えたいとき
 
 ## 設計書
-<作成した設計書のURL>
+- https://drive.google.com/file/d/1JpcbwxYWC3K5Rx--m0BHLBKMmMS426gA/view?usp=sharing (ER図)
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1Q07-f5II5mbk1j130DUxtv6MMvl9XvnEIT1D9_9JSCg/edit?usp=sharing
