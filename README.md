@@ -2,7 +2,7 @@
 
 ## サイト概要
 こちらのサイトでは、自身のクローゼットアイテムの管理、購入した商品のレビューの投稿、検索が行えます。<br>
-自分の持っている服や靴、帽子やアクセサリーなど、様々なファッションアイテム自分が管理したいカテゴリーに分けて、画像や情報でアイテムを管理できます。<br>
+自分の持っている服や靴、帽子やアクセサリーなど、様々なファッションアイテムを自分が管理したいカテゴリーに分けて、画像や情報でアイテムを管理できます。<br>
 アイテムの情報として、単体画像だけでなく着用画像やカラー画像、素材などの情報も登録することができ、より実物を想像しやすくなるように製作しています。<br>
 アイテムにほかのアイテムを関連付けさせることもでき、一つのアイテムの情報を見るだけでそのアイテムコーディネート情報を取得できます。<br>
 また、アイテムの情報をそのままレビューとして投稿、公開することも可能です。<br>
@@ -38,6 +38,7 @@
 
 ## 設計書
 - https://drive.google.com/file/d/1JpcbwxYWC3K5Rx--m0BHLBKMmMS426gA/view?usp=sharing (ER図)
+- https://docs.google.com/spreadsheets/d/1X3i5hmM3Ow2pkjtY-mvLx-YHKdE0WrtWROGFn7iL-zE/edit?usp=sharing (詳細設計書)
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1Q07-f5II5mbk1j130DUxtv6MMvl9XvnEIT1D9_9JSCg/edit?usp=sharing
