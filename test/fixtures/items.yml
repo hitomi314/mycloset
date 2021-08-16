@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  category_id: 1
+  style_id: 1
+  name: MyString
+  brand: MyString
+  color: MyString
+  color_code: 1
+  item_sex: 1
+  size: MyString
+  material: MyString
+  season: 1
+  buy_day: 2021-08-16
+  price: MyString
+
+two:
+  user_id: 1
+  category_id: 1
+  style_id: 1
+  name: MyString
+  brand: MyString
+  color: MyString
+  color_code: 1
+  item_sex: 1
+  size: MyString
+  material: MyString
+  season: 1
+  buy_day: 2021-08-16
+  price: MyString

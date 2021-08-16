@@ -1,0 +1,2 @@
+class RelatedItem < ApplicationRecord
+end
