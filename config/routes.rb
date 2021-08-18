@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'mypage/edit' => 'users#edit', as:'edit_mypage'
       #resourceでeditを作成するとdeviseのedit_user_registrationパスと同じURIになるため、個別にURとパスを作成して対応
     patch 'mypage/edit' => 'users#update'
-      #resourceでupdateを作成すると、上記のcustomerパスに対してpatchはあるが、edit_userパスにはpatchがないため、ルーティングエラーが発生する
+      #resourceでupdateを作成すると、上記のuserパスに対してpatchはあるが、edit_userパスにはpatchがないため、ルーティングエラーが発生する
       #これを回避するためにresourceではなく個別にパスを作成した
     post 'users/caution' => 'users#caution'
       #退会確認画面

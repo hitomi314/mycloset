@@ -1,2 +1,33 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+      <h1>welcome to <i class="fas fa-book"></i> <strong>MyCloset</strong> !!</h1>
+        <p>ここはあなただけの手のひらに収まるクローゼットです。</p>
+        <p>いつでもどこでも、ここにアクセスすることであなたのクローゼットアイテムを広げられます。</p>
+        <p>さあ、おしゃれをもっと楽しみましょう！</p>
+        <% if user_signed_in? %>
+        <div class="row">
+          <button type="button" class="btn btn-info btn-lg btn-block">
+            <%= link_to "Log in", user_path(current_user.id), class:"text-light" %>
+          </button>
+        </div>
+        <div class="row">
+          <button type="button" class="btn btn-success btn-lg btn-block">
+           <%= link_to "Sign Up", user_path(current_user.id), class:"text-light" %>
+          </button>
+        </div>
+        <% else %>
+        <div class="row">
+          <button type="button" class="btn btn-info btn-lg btn-block">
+            <%= link_to "Log in", user_session_path, class:"text-light" %>
+          </button>
+        </div>
+        <div class="row">
+          <button type="button" class="btn btn-success btn-lg btn-block">
+            <%= link_to "Sign Up", new_user_registration_path, class:"text-light" %>
+          </button>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>
