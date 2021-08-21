@@ -1,2 +1,13 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 text-left">
+      <p><strong style="font-size: 25px;"><%= @category.name %>アイテム一覧</strong>（全<%= @items.count %>件）</p>
+    </div>
+    <div class="col-md-3 text-center" style="margin: 5px 0 10px 0;">
+       <%= link_to "登録", new_user_item_path, class: "far fa-plus-square fa-2x" %>
+    </div>
+    <div class="main">
+      <%= render 'items/table', items: @items %>
+    </div>
+  </div>
+</div>

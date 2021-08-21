@@ -1,3 +1,4 @@
 class Style < ApplicationRecord
-  has_many :item, dependent: :destroy
+  has_many :items, dependent: :destroy
+  belongs_to :user
 end

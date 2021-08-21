@@ -1,0 +1,17 @@
+<h2>投稿一覧</h2>
+<table class="table">
+  <tr>
+    <% reviews.each do |review| %>
+    <td>
+      <%= link_to user_path(review.user) do %>
+      <%= review.user.name %>
+      <% end %>
+    </td>
+    <td class="item_name"><%= link_to review.item.name,review_path(review) %></td>
+    <td class="item_brand"><%= review.item.brand %></td>
+    <td class="item_color"><%= review.item.color %></td>
+    <td class="item_brand"><%= review.rate %></td>
+    <td id="favo_<%= review_id %>"><%= render 'reviews/favo', review: review %></td>
+    <% end %>
+  </tr>
+</table>

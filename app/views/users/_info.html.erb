@@ -1,0 +1,44 @@
+<h2>User info</h2>
+<table class="table">
+  <today>
+    <tr></tr>
+    <%= link_to user_path(user) do %>
+    <tr>
+      <th>ユーザーネーム</th>
+      <th class="name"><%= user.name %></th>
+     </tr>
+    <% end %>
+    <tr>
+      <th>性別</th>
+      <th class="sex"><%= user.sex %></th>
+    </tr>
+    <tr>
+      <th>身長</th>
+      <th class="height"><%= user.height %></th>
+    </tr>
+    <tr>
+      <th>体重</th>
+      <th class="weight"><%= user.weight %></th>
+    </tr>
+    <tr>
+      <th>骨格</th>
+      <th class="skelton"><%= user.skelton %></th>
+    </tr>
+    <tr>
+      <th>体型</th>
+      <th class="body"><%= user.body %></th>
+    </tr>
+    <tr>
+      <th>普段着ているサイズ</th>
+      <th class="close_size"><%= user.close_size %></th>
+    </tr>
+    <tr>
+      <th>パーソナルカラー</th>
+      <th class="pasonal_color"><%= user.pasonal_color %></th>
+    </tr>
+    <tr>
+    <th>レビュー数</th>
+     <th class="reviews"><%= link_to user.reviews.count, user_reviews_path(user.id) %></th>
+    </tr>
+  </today>
+</table>

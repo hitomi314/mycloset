@@ -1,2 +1,16 @@
-<h1>Users#mypage</h1>
-<p>Find me in app/views/users/mypage.html.erb</p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-4">
+      <%= render 'users/info', user: @user %>
+      <%= link_to "", mypage_edit_path(@user), class: "btn btn-outline-secondary btn-block fas fa-user-cog" %>
+      <%= link_to ' ブックマーク',user_bookmarks_path(@user) ,class: 'fas fa-bookmark text-danger' %>
+    </div>
+    <div class="col-md-6 offset-md-1">
+      <p><%= link_to ' アイテム一覧',user_items_path(@user) ,class: 'fas fa-tshirt text-danger' %></p>
+      <p><%= link_to ' カテゴリー一覧',user_categories_path(@user) ,class: 'fas fa-socks text-danger' %></p>
+      <p><%= link_to ' スタイル一覧',user_styles_path(@user) ,class: 'fas fa-air-freshener text-danger' %></p>
+      <p><%= link_to ' 投稿',user_reviews_path(@user) ,class: 'fas fa-paste text-danger'%></p>
+    </div>
+    </div>
+  </div>
+</div>

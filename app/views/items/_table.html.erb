@@ -1,0 +1,15 @@
+<% items.each do |item| %>
+  <ul class="main-item-list">
+    <li class="item">
+      <section class="card" >
+        <%= link_to item_path(item.id) do %>
+          <%= link_to item.image,user_item_path(item) %>
+        <% end %>
+        <div class="card-content">
+          <strong><p class="card-title"><%= item.brand %></p></strong>
+          <strong><p class="card-text">><%= item.color %></p></strong>
+        </div>
+      </section>
+    </li>
+  </ul>
+<% end %>
