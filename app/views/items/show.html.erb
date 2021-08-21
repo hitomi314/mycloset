@@ -1,2 +1,78 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-mt-30 text-center">
+      <% if @item.images.present? %>
+        <% @item.images.each do |image| %>
+          <%= attachment_image_tag image, :image, class: "default_image" %>
+        <% end %>
+      <% else %>
+        画像はありません。
+      <% end %>
+    </div>
+    <div class = "col-8">
+      <table>
+        <thead></thead>
+        <tbody>
+            <tr class="mb-5">
+              <td>アイテム名</td>
+              <td><%= @item.name %></td>
+            </tr>
+            <tr>
+              <td>ブランド名</td>
+              <td><%= @item.brand %></td>
+            </tr>
+            <tr>
+              <td>カラー</td>
+              <td><%= @item.color %></td>
+            </tr>
+            <tr>
+              <td>カラーコード</td>
+              <td><%= @item.color_code %></td>
+            </tr>
+            <tr>
+              <td>ウェアセックス</td>
+              <td><%= @item.item_sex %></td>
+            </tr>
+            <tr>
+              <td>サイズ</td>
+              <td><%= @item.size %></td>
+            </tr>
+            <tr>
+              <td>素材</td>
+              <td><%= @item.material %></td>
+            </tr>
+            <tr>
+              <td>季節</td>
+              <td><%= @item.season %></td>
+            </tr>
+            <tr>
+              <td>購入日</td>
+              <td><%= @item.price %></td>
+            </tr>
+            <tr>
+              <td>購入価格</td>
+              <td><%= @item.buy_day %></td>
+            </tr>
+            <tr>
+              <td>カテゴリー</td>
+              <td><%= @item.category.name %></td>
+            </tr>
+            <tr>
+              <td>スタイル</td>
+              <td><%= @item.style.name %></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row" style="font-size: 13px; margin-top: 10px;">
+      <div class="col-md-8 text-center">
+        <div class="actions">
+          <%= link_to "編集する", edit_admin_item_path(@item), :class => "btn btn-outline-secondary btn-block" %>
+        </div>
+        <div class="actions">
+          <%= link_to "削除する", user_item_path(@item),method: :delete, data:{ confirm: '本当に消しますか？' }, :class => "btn btn-outline-denger btn-block" %>
+        </div>
+      </div>
+  </div>
+</div>

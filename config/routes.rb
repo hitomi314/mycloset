@@ -11,13 +11,15 @@ Rails.application.routes.draw do
     post 'users/caution' => 'users#caution'
       #退会確認画面
     patch 'users/hide' => 'users#hide'
-  resources :users, only: [:show]
-    resources :categories, except: [:edit]
-    resources :styles, except: [:edit]
+  resources :users, only: [:show] do
+    resources :categories, except: [:new]
+    resources :styles, except: [:new]
     resources :bookmarks, only: [:index, :create, :destroy]
-    resources :items
+    resources :reviews
+    resources :items do
       resources :related_items, only: [:create, :destroy]
       resources :images, only: [:create, :destroy]
-      resources :reviews
         resources :favorites, only: [:create, :destroy]
+    end
+  end
 end

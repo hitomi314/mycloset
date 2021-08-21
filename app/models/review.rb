@@ -1,7 +1,8 @@
 class Review < ApplicationRecord
   belongs_to :item
-  has_many :favorite, dependent: :destroy
-  has_many :bookmark, dependent: :destroy
+  belongs_to :user
+  has_many :favorites, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   attachment :image
 end

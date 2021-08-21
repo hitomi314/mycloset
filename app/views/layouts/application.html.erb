@@ -24,9 +24,9 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-            <li><%= link_to ' マイページ',mypage_path(current_user),class: 'fas fa-address-card nav-link text-danger' %></li>
-            <li><%= link_to ' ブックマーク',bookmarks_path ,class: 'fas fa-bookmark nav-link text-danger' %></li>
-            <li><%= link_to ' 投稿',reviews_path ,class: 'fas fa-paste nav-link text-danger'%></li>
+            <li><%= link_to ' マイページ',mypage_path ,class: 'fas fa-address-card nav-link text-danger' %></li>
+            <li><%= link_to ' ブックマーク',user_bookmarks_path(current_user) ,class: 'fas fa-bookmark nav-link text-danger' %></li>
+            <li><%= link_to ' アイテム',user_items_path(current_user) ,class: 'fas fa-tshirt nav-link text-danger'%></li>
             <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-danger' %></li>
             <%= form_with url:search_path, method: :get, local: true do |f| %>
               <%= f.text_field 'search[value]' %>
