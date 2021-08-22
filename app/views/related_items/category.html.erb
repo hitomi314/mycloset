@@ -5,14 +5,13 @@
         <thead>
           <tr>
             <th>カテゴリー一覧</th>
-            <th><%= link_to "カテゴリー編集", new_user_category_path(current_user), class: "fas fa-edit fa-2x" %></th>
           </tr>
         </thead>
         <tbody>
           <% @categories.each do |category| %>
             <tr>
               <td>
-                <%= link_to category.name, user_category_path(@user, category) %>
+                <%= link_to category.name, user_item_related_items_select(@user, @item, category) %>
                 <span class="badge badge-primary badge-pill"><%= category.items.count %></span>
               </td>
             </tr>

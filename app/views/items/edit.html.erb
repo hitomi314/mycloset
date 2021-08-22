@@ -7,18 +7,18 @@
   <% end %>
   <div class="row">
     <div class="col-md-3 text-center" style="margin: 15px 0 15px 0;">
-      <h3 style="background-color: #eeeeee;">アイテム登録</h3>
+      <h3 style="background-color: #eeeeee;">アイテム編集</h3>
     </div>
   </div>
   <div class="row">
     <div class="col-md-8 ml-md-auto">
-      <%= form_with model: @item, url: user_items_path, method: :post, local:true do |f| %>
+      <%= form_with model: @item, url:user_item_path, local:true do |f| %>
       <table>
         <tr>
           <th><%= f.label :"アイテム画像", class: "mr-5" %></th>
           <td>
             <div class="form-group">
-              <%= f.attachment_field :image, multiple: true %>
+              <%= f.attachment_field :images_images, multiple: true %>
             </div>
           </td>
         </tr>
@@ -83,7 +83,12 @@
           <th><%= f.label :"季節", class: "mr-5" %></th>
           <td>
             <div class="form-group">
-              <%= f.collection_check_boxes(:season, Item.seasons,  :last, :first) %>
+              <%= f.label :オールシーズン  %>
+              <%= f.radio_button :season, :オールシーズン %>
+              <%= f.label :春夏  %>
+              <%= f.radio_button :season, :春夏 %>
+              <%= f.label :秋冬  %>
+              <%= f.radio_button :season, :秋冬 %>
             </div>
           </td>
         </tr>
@@ -107,7 +112,7 @@
           <th><%= f.label :"カテゴリー", class: "mr-5" %></th>
           <td>
             <div class="form-group">
-              <%= f.collection_select :category_id, @categories, :id, :name, prompt: @item.categories %>
+              <%= f.collection_select :category_id, @categories, :id, :name, prompt: @item.category %>
             </div>
           </td>
         </tr>

@@ -12,14 +12,18 @@ Rails.application.routes.draw do
       #退会確認画面
     patch 'users/hide' => 'users#hide'
   resources :users, only: [:show] do
-    resources :categories, except: [:new]
-    resources :styles, except: [:new]
+    resources :categories
+    resources :styles
     resources :bookmarks, only: [:index, :create, :destroy]
-    resources :reviews
     resources :items do
       resources :related_items, only: [:create, :destroy]
+         get 'related_items/category',to: 'related_items#category'
+         get 'related_items/select',to: 'related_items#select'
+         post 'related_items/confirm',to: 'related_items#confirm'
       resources :images, only: [:create, :destroy]
+      resources :reviews do
         resources :favorites, only: [:create, :destroy]
+      end
     end
   end
 end

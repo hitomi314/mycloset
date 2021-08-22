@@ -1,2 +1,17 @@
-<h1>Styles#edit</h1>
-<p>Find me in app/views/styles/edit.html.erb</p>
+<div class="container">
+  <% if @style.errors.any? %>
+    <%= @style.errors.count %>件のエラーが発生しました
+    <% @style.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+  <div class="row">
+    <div class="col-5-text_center">
+      <h4>カテゴリー編集</h4>
+        <%= form_with model: @style, url: user_style_path(@user, @style), local:true do |f| %>
+          <p>カテゴリー名</p>
+          <p><%= f.text_field :name %></p>
+          <%= f.submit '更新' %>
+        <% end %>
+    </div>
+  </div>
