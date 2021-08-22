@@ -1,15 +1,20 @@
 <% items.each do |item| %>
-  <ul class="main-item-list">
-    <li class="item">
+  <div class="col-3">
+      <%= link_to user_item_path(user, item) do %>
       <section class="card" >
-        <%= link_to item_path(item.id) do %>
-          <%= link_to item.image,user_item_path(item) %>
-        <% end %>
         <div class="card-content">
-          <strong><p class="card-title"><%= item.brand %></p></strong>
-          <strong><p class="card-text">><%= item.color %></p></strong>
+        <% if item.images.present? %>
+          <% item.images.each do |image| %>
+            <%= attachment_image_tag image, :image, :fill, 50, 75, format: 'jpeg', class: "default_image" %>
+          <% end %>
+        <% else %>
+          画像は登録されていません。
+        <% end %>
+          <strong><p class="name">アイテム名：<%= item.name %></p></strong>
+          <strong><p class="brand">ブランド名：<%= item.brand %></p></strong>
+          <strong><p class="color">>カラー：<%= item.color %></p></strong>
         </div>
       </section>
-    </li>
-  </ul>
+      <% end %>
+  </div>
 <% end %>

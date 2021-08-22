@@ -3,10 +3,10 @@
     <div class="col-mt-30 text-center">
       <% if @item.images.present? %>
         <% @item.images.each do |image| %>
-          <%= attachment_image_tag image, :image, class: "default_image" %>
+          <%= attachment_image_tag image, :image, :fill, 250, 300, format: 'jpeg', class: "default_image" %>
         <% end %>
       <% else %>
-        画像はありません。
+        画像は登録されていません。
       <% end %>
     </div>
     <div class = "col-8">
@@ -27,7 +27,7 @@
             </tr>
             <tr>
               <td>カラーコード</td>
-              <td><%= @item.color_code %></td>
+              <td style="background-color:<%= @item.color_code %>"></td>
             </tr>
             <tr>
               <td>ウェアセックス</td>
@@ -47,11 +47,11 @@
             </tr>
             <tr>
               <td>購入日</td>
-              <td><%= @item.price %></td>
+              <td><%= @item.buy_day %></td>
             </tr>
             <tr>
               <td>購入価格</td>
-              <td><%= @item.buy_day %></td>
+              <td><%= @item.price %>円</td>
             </tr>
             <tr>
               <td>カテゴリー</td>
@@ -68,10 +68,16 @@
   <div class="row" style="font-size: 13px; margin-top: 10px;">
       <div class="col-md-8 text-center">
         <div class="actions">
-          <%= link_to "編集する", edit_admin_item_path(@item), :class => "btn btn-outline-secondary btn-block" %>
+          <%= link_to "関連アイテム", user_item_related_items_confirm_path(@user, @item), :class => "btn btn-info btn-block" %>
         </div>
         <div class="actions">
-          <%= link_to "削除する", user_item_path(@item),method: :delete, data:{ confirm: '本当に消しますか？' }, :class => "btn btn-outline-denger btn-block" %>
+          <%= link_to "アイテムレビュー", user_item_review_path(@user, @item), :class => "btn btn-warning btn-block" %>
+        </div>
+        <div class="actions">
+          <%= link_to "編集する", edit_user_item_path(@user, @item), :class => "btn btn-success btn-block" %>
+        </div>
+        <div class="actions">
+          <%= link_to "削除する", user_item_path(@user, @item),method: :delete, data:{ confirm: '本当に消しますか？' }, :class => "btn btn-danger btn-block" %>
         </div>
       </div>
   </div>

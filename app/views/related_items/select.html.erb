@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 text-left">
+      <p><strong style="font-size: 25px;"><%= @category.name %>一覧</strong>（全<%= @items.count %>件）</p>
+    </div>
+    <div class="col-md-3 text-center" style="margin: 5px 0 10px 0;">
+       <%= link_to "登録", new_user_item_path, class: "far fa-plus-square fa-2x" %>
+    </div>
+    <div class="main">
+      <% @items.each do |item| %>
+        <ul class="main-item-list">
+          <li class="item">
+            <section class="card" >
+              <div class="card-content">
+                <strong><p class="card-title"><%= item.name %></p></strong>
+                <strong><p class="card-title"><%= item.brand %></p></strong>
+                <strong><p class="card-text">><%= item.color %></p></strong>
+                <%= form_with model: @related_item, local: true do |f| %>
+                  <%= f.hidden_field :item_id, value: item.id %>
+                    <%= f.submit "関連アイテムに追加する", class:"btn-flat-success" %>
+                <% end %>
+              </div>
+            </section>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

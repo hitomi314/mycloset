@@ -18,7 +18,7 @@
           <th><%= f.label :"アイテム画像", class: "mr-5" %></th>
           <td>
             <div class="form-group">
-              <%= f.attachment_field :image, multiple: true %>
+              <%= f.attachment_field :images_images, multiple: true %>
             </div>
           </td>
         </tr>
@@ -83,7 +83,14 @@
           <th><%= f.label :"季節", class: "mr-5" %></th>
           <td>
             <div class="form-group">
-              <%= f.collection_check_boxes(:season, Item.seasons,  :last, :first) %>
+              <%= f.label :オールシーズン  %>
+              <%= f.radio_button :season, :オールシーズン %>
+              <%= f.label :春夏  %>
+              <%= f.radio_button :season, :春夏 %>
+              <%= f.label :秋冬  %>
+              <%= f.radio_button :season, :秋冬 %>
+              <%#= f.collection_check_boxes :season, Item.seasons, :last, :first複数形は使えない。複数選択させるならhasmanyで持たせる %>
+              <!--valueに設定する値:last(enumの数字部分)表示テキストにする値:first（設定文言）-->
             </div>
           </td>
         </tr>

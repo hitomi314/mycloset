@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def mypage
     @user = current_user
+    @items =@user.items
   end
 
   def show
