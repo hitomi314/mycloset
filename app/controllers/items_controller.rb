@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = current_user.items
+    @items = current_user.items.page(params[:page]).per(20)
     @user = current_user
   end
 
@@ -62,7 +62,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:category_id, :style_id, :name, :brand, :color, :color_code, :item_sex, :size, :material, :buy_day, :season, :price, images_images: [])
+    params.require(:item).permit(:category_id, :style_id, :name, :brand, :color, :color_code, :item_sex, :size, :material, :buy_day, :season, :price, images_images: [], related_items:[])
   end
 #images_images: []images(モデル名)_images(refileで画像投稿するときの規則名): [](複数投稿するときに必要)
 end

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :styles, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   enum sex: { 男: true, 女: false}
   enum height: {"身長非公開" => 0, "150㎝未満" => 1, "150cm〜155cm" => 2, "155cm〜160cm" => 3, "160cm〜165cm" => 4, "165cm〜170cm" => 5,

@@ -1,0 +1,108 @@
+<% if @review.present? %>
+<div class="container">
+  <div class="row">
+    <div class="col-mt-30 text-center">
+      <h3><%= @item.name %>のレビュー</h3>
+      <% if @images.present? %>
+        <% @images.each do |image| %>
+          <%= attachment_image_tag image, :image, :fill, 250, 300, format: 'jpeg', class: "default_image" %>
+       <% end %>
+      <% else %>
+        画像は登録されていません。
+      <% end %>
+    </div>
+    <div class = "col-8">
+      <table>
+        <thead></thead>
+        <tbody>
+            <tr class="mb-5">
+              <td>アイテム名</td>
+              <td><%= @review.name %></td>
+            </tr>
+            <tr>
+              <td>ブランド名</td>
+              <td><%= @review.brand %></td>
+            </tr>
+            <tr>
+              <td>カラー</td>
+              <td><%= @item.color %></td>
+            </tr>
+            <tr>
+              <td>カラーコード</td>
+              <td style="background-color:<%= @item.color_code %>"></td>
+            </tr>
+            <tr>
+              <td>ウェアセックス</td>
+              <td><%= @item.item_sex %></td>
+            </tr>
+            <tr>
+              <td>サイズ</td>
+              <td><%= @item.size %></td>
+            </tr>
+            <tr>
+              <td>素材</td>
+              <td><%= @item.material %></td>
+            </tr>
+            <tr>
+              <td>季節</td>
+              <td><%= @item.season %></td>
+            </tr>
+            <tr>
+              <td>購入日</td>
+              <td><%= @item.buy_day %></td>
+            </tr>
+            <tr>
+              <td>購入価格</td>
+              <td><%= @item.price %>円</td>
+            </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h5><レビュー></h5>
+      <div class="my-2">
+          <div class="d-inline-block">
+              <span class="ml-2" id="rate">評価：<%= @review.rate %></span>
+              <!--星評価-->
+               <span id="star-rate-<%= @review.id %>"></span>
+                <script>
+                $('#star-rate-<%= @review.id %>').raty({
+                  size: 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  score: <%= @review.rate %>,
+                });
+                </script>
+              <!--/星評価-->
+              <span class="ml-5 pl-5"><%= @review.created_at.strftime("%Y/%m/%d") %></span>
+          </div>
+          <p class="d-block mt-3"><%= @review.text %></p>
+          <p id="favo_<%= @review.id %>"><%#= render 'reviews/favo', review: @review %></p>
+          <p>
+            <% if @review.bookmarked_by?(current_user) %>
+              <td><%= link_to "ブックマークを外す", user_bookmarks_path(@review), method: :delete %></td>
+            <% else %>
+              <td><%= link_to "ブックマーク", user_bookmarks_path(@review), method: :post %></td>
+            <% end %>
+          </p>
+      </div>
+    </div>
+  </div>
+  <% if @review.user == current_user %>
+  <div class="row" style="font-size: 13px; margin-top: 10px;">
+   <div class="col-md-8 text-center">
+      <div class="actions">
+        <%= link_to "編集する", edit_user_item_review_path(@user, @item, @review), :class => "btn btn-success btn-block" %>
+      </div>
+      <div class="actions">
+        <%= link_to "削除する", user_item_review_path(@user, @item, @review), method: :delete, data:{ confirm: '本当に消しますか？' }, :class => "btn btn-danger btn-block" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+<% else %>
+  このアイテムのレビューはありません。
+  <%= link_to "レビューを作成する", new_user_item_review_path(@user, @item), :class => "btn btn-warning btn-block" %>
+<% end %>

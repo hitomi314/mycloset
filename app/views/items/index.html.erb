@@ -8,5 +8,6 @@
   <div class="row">
     <%= render 'items/table', items: @items, user: @user  %>
   </div>
+  <%= paginate @items %>
 </div>
 

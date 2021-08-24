@@ -7,7 +7,7 @@ class StylesController < ApplicationController
 
   def show
     @style = Style.find(params[:id])
-    @items = @style.items
+    @items = @style.items.page(params[:page]).per(20)
     @user = current_user
     if @style.user != current_user
       redirect_to mypage_path

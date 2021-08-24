@@ -6,8 +6,9 @@
     <div class="col-md-3 text-center" style="margin: 5px 0 10px 0;">
        <%= link_to "登録", new_user_style_path, class: "far fa-plus-square fa-2x" %>
     </div>
-    <div class="main">
+    <div class="row">
       <%= render 'items/table', items: @items, user: @user %>
+      <%= paginate @items %>
     </div>
   </div>
 </div>

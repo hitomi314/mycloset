@@ -1,29 +1,47 @@
-<div class="container">
+<div class="container scroll-space">
   <div class="row">
-    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
-      <h1>welcome to <i class="fas fa-book"></i> <strong>MyCloset</strong> !!</h1>
-        <p>ここはあなただけの手のひらに収まるクローゼットです。</p>
-        <p>いつでもどこでも、ここにアクセスすることであなたのクローゼットアイテムを広げられます。</p>
-        <p>さあ、おしゃれをもっと楽しみましょう！</p>
-        <% if user_signed_in? %>
-        <div class="row">
-          <button type="button" class="btn btn-info btn-lg btn-block">
-            <%= link_to "マイページ", mypage_path, class:"text-light" %>
-          </button>
+    <div class="col-12">
+      <div class="main_visual">
+        <div class="main_visual_top"></div>
+        <div class="main_visual_image_box">
+          <div class="main_visual_images">
+            <div class="image1"><img class="img" src="assets/image1.jpg"></div>
+            <div class="image2"><img class="img" src="assets/image2.jpg"></div>
+            <div class="image3"><img class="img" src="assets/image3.jpg"></div>
+          </div>
         </div>
-        <% else %>
-        <div class="row">
-          <button type="button" class="btn btn-info btn-lg btn-block">
-            <%= link_to "Log in", user_session_path, class:"text-light" %>
-          </button>
-        </div>
-        <div class="row">
-          <p>※まだ会員登録されてない方はこちら</p>
-          <button type="button" class="btn-outline-dark tn-block">
-            <%= link_to "Sign Up", new_user_registration_path, class:"text-dark" %>
-          </button>
-        </div>
-        <% end %>
+        <div class="main_visual_under"></div>
+        <p class="main_visual_title">
+          <span>&nbsp;M y C l o s e t</span></br>
+        </p>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+        ここはあなただけの手のひらに収まるクローゼットです。</br>
+        いつでもどこでも、ここにアクセスすることであなたのクローゼットアイテムを広げられます。</br>
+        さあ、おしゃれをもっと楽しみましょう！
+      </div>
+    </div>
+    <% if user_signed_in? %>
+      <div class="row">
+        <button type="button" class="btn btn-info btn-lg btn-block">
+          <%= link_to "マイページ", mypage_path, class:"text-light" %>
+        </button>
+      </div>
+    <% else %>
+      <div class="row">
+        <button type="button" class="btn btn-info btn-lg btn-block">
+          <%= link_to "Log in", user_session_path, class:"text-light" %>
+        </button>
+      </div>
+      <div class="row">
+        <p>※まだ会員登録されてない方はこちら</p>
+        <button type="button" class="btn-outline-dark tn-block">
+          <%= link_to "Sign Up", new_user_registration_path, class:"text-dark" %>
+        </button>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -1,0 +1,6 @@
+  <%= form_tag(saerch_path, method: :get) do %>
+  <%= text_field_tag 'content' %>
+  <%= select_tag 'model', options_for_select({ "アイテム（アイテム名）" => "itemname", "アイテム（ブランド名）" => "itembrand","レビュー（アイテム名）" => "reviewname","レビュー（ブランド名）" => "reviewbrand" }) %>
+  <%= select_tag 'method', options_for_select({ "完全一致" => "perfect", "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward" }) %>
+  <%= submit_tag '検索' %>
+  <% end %>

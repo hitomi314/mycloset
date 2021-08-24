@@ -1,0 +1,96 @@
+<div class="container">
+  <% if @review.errors.any? %>
+    <%= @review.errors.count %>件のエラーが発生しました
+    <% @review.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+  <div class="row">
+    <div class="col-md-5 text-center" style="margin: 15px 0 15px 0;">
+      <h3 style="background-color: #eeeeee;"><%= @item.name %>のレビューを書く</h3>
+    </div>
+    <div class = "col-8">
+      <% if @item.images.present? %>
+        <% @item.images.each do |image| %>
+          <%= attachment_image_tag image, :image, :fill, 100, 150, format: 'jpeg', class: "default_image" %>
+        <% end %>
+      <% else %>
+        画像は登録されていません。
+      <% end %>
+      <table>
+        <thead></thead>
+        <tbody>
+            <tr class="mb-5">
+              <td>アイテム名</td>
+              <td><%= @item.name %></td>
+            </tr>
+            <tr>
+              <td>ブランド名</td>
+              <td><%= @item.brand %></td>
+            </tr>
+            <tr>
+              <td>カラー</td>
+              <td><%= @item.color %></td>
+            </tr>
+            <tr>
+              <td>カラーコード</td>
+              <td style="background-color:<%= @item.color_code %>"></td>
+            </tr>
+            <tr>
+              <td>ウェアセックス</td>
+              <td><%= @item.item_sex %></td>
+            </tr>
+            <tr>
+              <td>サイズ</td>
+              <td><%= @item.size %></td>
+            </tr>
+            <tr>
+              <td>素材</td>
+              <td><%= @item.material %></td>
+            </tr>
+            <tr>
+              <td>季節</td>
+              <td><%= @item.season %></td>
+            </tr>
+            <tr>
+              <td>購入日</td>
+              <td><%= @item.buy_day %></td>
+            </tr>
+            <tr>
+              <td>購入価格</td>
+              <td><%= @item.price %>円</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+   <div class="col-8 mx-auto">
+    <h4 class="mt-5"></h4>
+    <%= form_with model: @review, url: user_item_reviews_path, method: :post, local:true do |f|  %>
+      <div class="form-group" id="star">
+        <% f.label :rate %>
+        <%= f.hidden_field :rate, id: :review_star, class:'form-control' %>
+      </div>
+      <%= f.text_area :text, rows:'3',placeholder: "コメントをここに", class:"form-control" %>
+      <%= f.hidden_field :name, value: @item.name %>
+      <%= f.hidden_field :brand, value: @item.brand %>
+      <%= f.submit "送信する", class:"btn btn-success mt-3" %>
+    <% end %>
+  　</div>
+　</div>
+</div>
+
+
+<script>
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    // starHalf: '<%#= asset_path('star-half.png') %>',
+    scoreName: 'review[rate]',
+    // reviewカラムに保存するので忘れないように
+    // half: false,
+    // ★の半分の入力は行わない
+  });
+</script>

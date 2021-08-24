@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 text-left">
+      <p><strong style="font-size: 25px;"><%= @item.name %>関連アイテム一覧</strong>（全<%= @related_items.count %>件）</p>
+       <p><%= link_to "登録", user_item_related_items_category_path, class: "far fa-plus-square fa-2x" %></p>
+       <!--<p><%#= link_to '全て削除する', user_item_related_items_destroy_all_path(@user,@item), method: :delete, class: "btn btn-danger" %></p>-->
+    </div>
+  </div>
+  <div class="row">
+    <% @related_items.each do |item| %>
+        <ul class="main-item-list">
+          <li class="item">
+            <section class="card" >
+              <div class="card-content">
+                <% if item.item.images.present? %>
+                  <% item.item.images.each do |image| %>
+                    <%= attachment_image_tag image, :image, :fill, 75, 100, format: 'jpeg', class: "default_image" %>
+                  <% end %>
+                <% else %>
+                  画像は登録されていません。
+                <% end %>
+              <div class="card-content">
+                <strong><p class="card-title"><%= item.item.name %></p></strong>
+                <strong><p class="card-title"><%= item.item.brand %></p></strong>
+                <strong><p class="card-text">><%= item.item.color %></p></strong>
+                <p><%= link_to '削除', user_item_related_item_path(@user, @item, item), method: :delete, class: "btn btn-sm btn-danger" %></p>
+              </div>
+            </section>
+          </li>
+        </ul>
+      <% end %>
+  </div>
+</div>

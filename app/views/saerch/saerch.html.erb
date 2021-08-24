@@ -1,2 +1,13 @@
-<h1>Saerch#saerch</h1>
-<p>Find me in app/views/saerch/saerch.html.erb</p>
+<% if @model == 'reviewname' %>
+  <h3>"<%= @content %>"のレビュー（アイテム名）検索結果</h3>
+  <%= render 'saerch/review'%>
+<% elsif @model == 'reviewbrand' %>
+  <h3>"<%= @content %>"のレビュー（ブランド名）検索結果</h3>
+  <%= render 'saerch/review'%>
+<% elsif @model == 'itemname' %>
+  <h3>"<%= @content %>"のアイテム（アイテム名）検索結果</h3>
+  <%= render 'saerch/item' %>
+<% else @model == 'itembrand' %>
+  <h3>"<%= @content %>"のアイテム（ブランド名）検索結果</h3>
+  <%= render 'saerch/item'%>
+<% end %>

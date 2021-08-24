@@ -1,13 +1,10 @@
 <h2>User info</h2>
 <table class="table">
   <today>
-    <tr></tr>
-    <%= link_to user_path(user) do %>
     <tr>
       <th>ユーザーネーム</th>
-      <th class="name"><%= user.name %></th>
-     </tr>
-    <% end %>
+      <th class="name"><%= link_to user.name,user_path(user) %></th>
+    </tr>
     <tr>
       <th>性別</th>
       <th class="sex"><%= user.sex %></th>

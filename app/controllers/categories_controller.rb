@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @items = @category.items
+    @items = @category.items.page(params[:page]).per(20)
     @user = current_user
     if @category.user != current_user
       redirect_to mypage_path

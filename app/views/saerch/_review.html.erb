@@ -10,7 +10,7 @@
       <th colspan="5"></th>
     </tr>
   </thead>
-   <% reviews.each do |review| %>
+   <% @reviews.each do |review| %>
      <tr>
         <td><%= link_to review.user.name,user_path(review.user_id) %></td>
         <td class="item_name"><%= link_to review.name,user_item_review_path(review.user_id, review.item_id, review) %></td>
