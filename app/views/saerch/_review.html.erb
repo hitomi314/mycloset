@@ -1,0 +1,35 @@
+<table class="table table-hover">
+  <thead class="thead-light">
+    <tr>
+     <th>ユーザーネーム</th>
+      <th>アイテム名</th>
+      <th>ブランド名</th>
+      <th>カラー</th>
+      <th>評価</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+   <% @reviews.each do |review| %>
+     <tr>
+        <td><%= link_to review.user.name,user_path(review.user_id) %></td>
+        <td class="item_name"><%= link_to review.name,user_item_review_path(review.user_id, review.item_id, review) %></td>
+        <td class="item_brand"><%= review.brand %></td>
+        <td class="item_color"><%= review.item.color %></td>
+        <td class="item_brand"><%= review.rate %></td>
+        <td>
+          <!--星評価-->
+          <span id="star-rate-<%= review.id %>"></span>
+            <script>
+              $('#star-rate-<%= review.id %>').raty({
+                size: 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                score: <%= review.rate %>,
+              });
+            </script>
+          <!--/星評価-->
+        </td>
+        <td id="favo_<%= review.id %>"><%#= render 'reviews/favo', review: review %></td>
+     </tr>
+    <% end %>
+</table>

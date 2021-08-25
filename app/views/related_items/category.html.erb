@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row my-3">
+    <div class="col-lg-10">
+      <table class="table table-borderd">
+        <thead>
+          <tr>
+            <th>関連アイテムカテゴリー選択</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td>
+                <%= link_to category.name, user_item_related_items_select_path(@user, @item, category) %>
+                <span class="badge badge-primary badge-pill"><%= category.items.count %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

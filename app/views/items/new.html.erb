@@ -1,0 +1,143 @@
+<div class="container">
+  <% if @item.errors.any? %>
+    <%= @item.errors.count %>件のエラーが発生しました
+    <% @item.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+  <div class="row">
+    <div class="col-md-3 text-center">
+    </div>
+    <div class="col-md-7 text-center" style="margin: 15px 0 15px 0;">
+      <h3 style="background-color: #eeeeee;">アイテム登録</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 ml-md-auto">
+      <%= form_with model: @item, url: user_items_path, method: :post, local:true do |f| %>
+      <table>
+        <tr>
+          <th><%= f.label :"アイテム画像", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.attachment_field :images_images, multiple: true %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :"アイテム名", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :"ブランド名", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.text_area :brand, class: "form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :"カラー", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.text_area :color, class: "form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :"カラーコード", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.color_field :color_code, class: "form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :"ウェアセックス", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.select :item_sex, Item.item_sexes.keys, {prompt: "選択してください"} %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :"サイズ", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.text_area :size, class: "form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :"素材", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.text_area :material, class: "form-control" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <tr>
+          <th><%= f.label :"季節", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.label :オールシーズン  %>
+              <%= f.radio_button :season, :オールシーズン %>
+              <%= f.label :春夏  %>
+              <%= f.radio_button :season, :春夏 %>
+              <%= f.label :秋冬  %>
+              <%= f.radio_button :season, :秋冬 %>
+              <%#= f.collection_check_boxes :season, Item.seasons, :last, :first複数形は使えない。複数選択させるならhasmanyで持たせる %>
+              <!--valueに設定する値:last(enumの数字部分)表示テキストにする値:first（設定文言）-->
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :"購入日", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.date_select :buy_day %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :"購入価格", class: "mr-5" %></th>
+          <td>
+            <div class="form-group form-inline">
+              <%= f.text_field :price, class: "form-control" %>円
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :"カテゴリー", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.collection_select :category_id, @categories, :id, :name, {prompt: "選択してください"}%>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th><%= f.label :"スタイル", class: "mr-5" %></th>
+          <td>
+            <div class="form-group">
+              <%= f.collection_select :style_id, @styles, :id, :name, {prompt: "選択してください"}%>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td>
+            <div class="actions">
+              <%= f.submit "新規登録", :class => "btn btn-outline-secondary btn-block" %>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

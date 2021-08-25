@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 text-left">
+      <p><strong style="font-size: 25px;">アイテム一覧</strong>（全<%= @items.count %>件）</p>
+      <p><%= link_to "登録", new_user_item_path, class: "far fa-plus-square fa-lg" %></p>
+    </div>
+  </div>
+  <div class="main">
+    <%= render 'items/table', items: @items, user: @user  %>
+  </div>
+  <%= paginate @items %>
+</div>
+

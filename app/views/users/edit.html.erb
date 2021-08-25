@@ -1,0 +1,73 @@
+<div class="container">
+  <% if @user.errors.any? %>
+    <%= @user.errors.count %>件のエラーが発生しました
+    <% @user.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+ <div class="row">
+    <div class="col-md-3 text-center">
+    </div>
+    <div class="col-md-7 text-center" style="margin: 15px 0 15px 0;">
+      <h3 style="background-color: #eeeeee;">ユーザー編集</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <%= form_with model:@user, url:edit_mypage_path, local:true do |f| %>
+      <table class="table">
+        <tr>
+          <th class="customer_edit_th">メールアドレス</th>
+          <td><%= f.text_field :email %></td>
+        </tr>
+        <tr>
+          <th class="user_edit_th">ユーザーネーム</th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <th class="user_edit_th">性別</th>
+          <td>
+            <%= f.label :女  %>
+            <%= f.radio_button :sex, :女 %>
+            <%= f.label :男  %>
+            <%= f.radio_button :sex, :男 %>
+          </td>
+        </tr>
+         <tr>
+          <th class="user_edit_th">身長</th>
+          <td><%= f.select :height, User.heights.keys, prompt: @user.height, class: "height-select" %></td>
+            <!--selectフォームではUser.heights.keysのモデル名.カラム名.keysのカラム名は複数形になる。選択肢が一つでも複数形-->
+        </tr>
+          <th class="user_edit_th">体重</th>
+          <td> <%= f.select :weight, User.weights.keys, prompt: @user.weight, class: "weight-select" %></td>
+        </tr>
+          <th class="user_edit_th">骨格</th>
+          <td><%= f.text_field :skelton %></td>
+        </tr>
+        <tr>
+          <th class="user_edit_th">体型</th>
+          <td><%= f.text_field :body %></td>
+        </tr>
+        <tr>
+          <th class="user_edit_th">普段着ているサイズ</th>
+          <td><%= f.text_field :close_size %></td>
+        </tr>
+        <tr>
+          <th class="user_edit_th">パーソナルカラー</th>
+          <td><%= f.text_field :pasonal_color %></td>
+        </tr>
+      </table>
+
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <%= f.submit "編集内容を保存",class: "btn btn-sm btn-success p-3" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <%= link_to "退会する",users_caution_path , method: :POST, class: "btn btn-sm btn-danger p-1" %>
+    </div>
+  </div>
+  </div>
+</div>

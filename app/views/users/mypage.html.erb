@@ -1,0 +1,22 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-4">
+      <%= render 'users/info', user: @user, items: @items %>
+      <%= link_to "", mypage_edit_path, class: "btn btn-outline-secondary btn-block fas fa-user-cog fa-lg" %>
+      <%= link_to ' ブックマーク',user_bookmarks_path ,class: 'fas fa-bookmark text-danger ' %>
+    </div>
+    <div class="col-md-6 text-center m-5">
+      <div class="list-group">
+        <%= link_to ' アイテム一覧',user_items_path(@user) ,class: 'fas fa-tshirt fa-lg list-group-item list-group-item-action list-group-item-primary p-5' %>
+      </div>
+      <div class="list-group">
+        <%= link_to ' カテゴリー一覧',user_categories_path(@user) ,class: 'fas fa-socks fa-lg list-group-item list-group-item-action list-group-item-primary p-5 mt-3' %>
+      </div>
+      <div class="list-group">
+        <%= link_to ' スタイル一覧',user_styles_path(@user) ,class: 'fas fas fa-vest-patches fa-lg list-group-item list-group-item-action list-group-item-primary p-5 mt-3' %>
+      </div>
+      <div class="list-group">
+        <%= link_to ' 投稿レビュー',user_item_reviews_path(@user, @items) ,class: 'fas fa-paste fa-lg list-group-item list-group-item-action list-group-item-primary p-5 mt-3'%>
+      </div>
+  </div>
+</div>

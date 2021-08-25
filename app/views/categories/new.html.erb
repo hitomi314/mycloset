@@ -1,0 +1,52 @@
+<div class="container">
+  <% if @category.errors.any? %>
+    <%= @category.errors.count %>件のエラーが発生しました
+    <% @category.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+  <div class="row">
+    <div class="col-md-3 text-left">
+    </div>
+    <div class="col-md-4 text-center" style="margin: 15px 0 15px 0;">
+      <h5 style="background-color: #eeeeee;">カテゴリー情報</h5>
+    </div>
+  </div>
+  <%= form_with model: @category, url: user_categories_path, local:true do |f| %>
+    <div class="row" style="font-size: 16px;">
+      <div class="col-md-3 text-left">
+        <%= f.label :"カテゴリー名" %>
+      </div>
+      <div class="col-md-5 text-left">
+        <%= f.text_field :name %>
+      </div>
+      <div class="col-md-1 text-right">
+        <div class="actions">
+          <%= f.submit '新規登録', class: "btn btn-outline-secondary btn-block-lg" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row" style="margin: 60px 0;">
+    <div class="col-md-8">
+      <table class="table table-bordered border-dark">
+        <thead class="table-secondary">
+          <tr>
+            <th style="width: 70%;">カテゴリー名</th>
+            <th colspan="2" style="width: 30%;"></th>
+          </tr>
+        </thead>
+        <% @categories.each do |category| %>
+         <tbody>
+           <td><%= category.name %></td>
+           <td>
+              <%= link_to "編集する", edit_user_category_path(@user, category), class: 'btn btn-sm btn-success' %>
+              <%= link_to "削除する", user_category_path(@user, category), class: 'btn btn-sm btn-danger', method: :delete %>
+            </td>
+         </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

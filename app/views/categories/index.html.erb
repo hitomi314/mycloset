@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 text-left">
+      <p><strong style="font-size: 25px;">カテゴリー一覧</strong>（全<%= @categories.count %>件）</p>
+      <p><%= link_to "カテゴリー編集", new_user_category_path(current_user), class: "fas fa-edit fa-lg text-info" %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 text-center" style="font-size: 20px;">
+      <ul class="list-group">
+        <% @categories.each do |category| %>
+          <%= link_to user_category_path(@user, category), class: 'list-group-item list-group-item-action list-group-item-info p-3' do %>
+            <span><%= category.name %></span>
+            <span class="badge badge-info badge-pill"><%= category.items.count %></span>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

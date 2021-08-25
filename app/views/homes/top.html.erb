@@ -1,2 +1,46 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container scroll-space">
+  <div class="row">
+    <div class="col-12">
+      <div class="main_visual">
+        <div class="main_visual_top"></div>
+        <div class="main_visual_image_box">
+          <div class="main_visual_images">
+            <div class="image1"><img class="img" src="assets/image1.jpg"></div>
+            <div class="image2"><img class="img" src="assets/image2.jpg"></div>
+            <div class="image3"><img class="img" src="assets/image3.jpg"></div>
+          </div>
+        </div>
+        <div class="main_visual_under"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+        <h3>M y C l o s e t</h3>
+      </div>
+      <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+        ここはあなただけの手のひらに収まるクローゼットです。</br>
+        いつでもどこでも、ここにアクセスすることであなたのクローゼットアイテムを広げられます。</br>
+        さあ、おしゃれをもっと楽しみましょう！
+      </div>
+    </div>
+    <% if user_signed_in? %>
+      <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+        <button type="button" class="btn btn-info btn-lg btn-block">
+          <%= link_to "マイページ", mypage_path, class:"text-light" %>
+        </button>
+      </div>
+    <% else %>
+      <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+        <button type="button" class="btn btn-info btn-lg btn-block">
+          <%= link_to "Log in", user_session_path, class:"text-light" %>
+        </button>
+        <p>※まだ会員登録されてない方はこちら<
+          <button type="button" class="btn-outline-dark tn-block">
+            <%= link_to "Sign Up", new_user_registration_path, class:"text-dark" %>
+          </button>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

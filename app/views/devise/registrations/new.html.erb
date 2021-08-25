@@ -28,17 +28,20 @@
 
     <div class="field">
     <%= f.label :"性別※" %><br />
-    <%= f.text_field :sex, autofocus: true %>
+    <%= f.label :女  %>
+    <%= f.radio_button :sex, :女 %>
+    <%= f.label :男  %>
+    <%= f.radio_button :sex, :男 %>
   </div>
 
   <div class="field">
     <%= f.label :"身長" %><br />
-    <%= f.text_field :height, autofocus: true %>cm
+    <%= f.select :height, User.heights.keys , {prompt: "選択してください"}, class: "height-select" %>
   </div>
 
   <div class="field">
     <%= f.label :"体重" %><br />
-    <%= f.text_field :weight, autofocus: true %>kg
+    <%= f.select :weight, User.weights.keys, {prompt: "選択してください"}, class: "weight-select" %>
   </div>
 
   <div class="field">

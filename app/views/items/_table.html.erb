@@ -1,0 +1,22 @@
+<div class="card-deck">
+<% items.each do |item| %>
+  <ul class="main-item-list">
+    <div class="card" style="width:20rem;">
+      <%= link_to user_item_path(user, item), class: "btn btn-outline-dark stretched-link" do %>
+        <div class="card-content">
+          <% if item.images.present? %>
+            <% item.images.each do |image| %>
+              <%= attachment_image_tag image, :image, :fill, 75, 100, format: 'jpeg', class: "default_image" %>
+            <% end %>
+          <% else %>
+            画像は登録されていません。
+          <% end %>
+          <strong><p class="name">アイテム名：<%= item.name %></p></strong>
+          <strong><p class="brand">ブランド名：<%= item.brand %></p></strong>
+          <strong><p class="color">カラー：<%= item.color %></p></strong>
+        </div>
+      <% end %>
+    </div>
+  </ul>
+<% end %>
+</div>

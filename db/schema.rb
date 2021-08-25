@@ -10,42 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_16_050803) do
+ActiveRecord::Schema.define(version: 2021_08_16_024928) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id"
     t.integer "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_bookmarks_on_review_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
     t.integer "review_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_favorites_on_review_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "images", force: :cascade do |t|
     t.integer "item_id"
-    t.string "image"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_images_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
     t.integer "user_id"
     t.integer "category_id"
     t.integer "style_id"
-    t.string "name"
+    t.string "name", null: false
     t.string "brand"
     t.string "color"
-    t.integer "color_code"
+    t.string "color_code"
     t.integer "item_sex"
     t.string "size"
     t.string "material"
@@ -54,26 +62,38 @@ ActiveRecord::Schema.define(version: 2021_08_16_050803) do
     t.string "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["style_id"], name: "index_items_on_style_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "related_items", force: :cascade do |t|
     t.integer "item_id"
+    t.integer "parentitem_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_related_items_on_item_id"
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "item_id"
     t.integer "rate"
+    t.string "name"
+    t.string "brand"
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_reviews_on_item_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "styles", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_styles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
