@@ -17,5 +17,15 @@
 
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
+
+//= require jquery.raty.js
+
 //= require_tree .
+
+$(function(){
+  $('.main_visual_images').slick({
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 2500,
+  });
+});

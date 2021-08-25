@@ -1,2 +1,45 @@
-<h1>Saerch#saerch</h1>
-<p>Find me in app/views/saerch/saerch.html.erb</p>
+<% if @model == 'reviewname' %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 text-left">
+        <p><strong style="font-size: 25px;">"<%= @content %>"のレビュー（アイテム名）検索結果</strong></p>
+      </div>
+    </div>
+    <div class="row">
+      <%= render 'saerch/review'%>
+    </div>
+  </div>
+<% elsif @model == 'reviewbrand' %>
+    <div class="container">
+    <div class="row">
+      <div class="col-md-10 text-left">
+        <p><strong style="font-size: 25px;">"<%= @content %>"のレビュー（ブランド名）検索結果</strong></p>
+      </div>
+    </div>
+    <div class="row">
+      <%= render 'saerch/review'%>
+    </div>
+  </div>
+<% elsif @model == 'itemname' %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 text-left">
+        <p><strong style="font-size: 25px;">"<%= @content %>"のアイテム（アイテム名）検索結果</strong></p>
+      </div>
+    </div>
+    <div class="main">
+      <%= render 'saerch/item' %>
+    </div>
+  </div>
+<% else @model == 'itembrand' %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 text-left">
+        <p><strong style="font-size: 25px;">"<%= @content %>"のアイテム（ブランド名）検索結果</strong></p>
+      </div>
+    </div>
+    <div class="main">
+      <%= render 'saerch/item' %>
+    </div>
+  </div>
+<% end %>

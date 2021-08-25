@@ -7,7 +7,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @reviews = @user.reviews
+    @reviews = @user.reviews.page(params[:page]).per(10).order(created_at: :desc)
+    @items =@user.items
   end
 
   def edit
@@ -31,8 +32,7 @@ class UsersController < ApplicationController
     @user.update(is_valid: true)
     reset_session
     #すべてのセッション情報を削除
-    flash[:notice] = "退会処理を実行いたしました"
-    redirect_to root_path
+    redirect_to root_path, notice: "退会処理しました"
   end
 
   private

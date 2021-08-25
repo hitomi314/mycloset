@@ -1,29 +1,34 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4 text-left">
-      <p><strong style="font-size: 25px;"><%= @category.name %>一覧</strong>（全<%= @items.count %>件）</p>
+    <div class="col-md-10 text-left">
+      <p><strong style="font-size: 20px;"><%= @category.name %>一覧（関連アイテム選択）</strong>（全<%= @items.count %>件）</p>
     </div>
-    <div class="col-md-3 text-center" style="margin: 5px 0 10px 0;">
-       <%= link_to "登録", new_user_item_path, class: "far fa-plus-square fa-2x" %>
-    </div>
-    <div class="main">
-      <% @items.each do |item| %>
+  </div>
+  <div class="main">
+    <div class="card-deck">
+      <% @items.each do |related_item| %>
         <ul class="main-item-list">
-          <li class="item">
-            <section class="card" >
-              <div class="card-content">
-                <strong><p class="card-title"><%= item.name %></p></strong>
-                <strong><p class="card-title"><%= item.brand %></p></strong>
-                <strong><p class="card-text">><%= item.color %></p></strong>
-                <%= form_with model: @related_item, local: true do |f| %>
-                  <%= f.hidden_field :item_id, value: item.id %>
-                    <%= f.submit "関連アイテムに追加する", class:"btn-flat-success" %>
+          <div class="card" style="width:20rem;">
+            <div class="card-content">
+              <% if related_item.images.present? %>
+                <% related_item.images.each do |image| %>
+                  <%= attachment_image_tag image, :image, :fill, 75, 100, format: 'jpeg', class: "default_image" %>
                 <% end %>
-              </div>
-            </section>
-          </li>
+              <% else %>
+                画像は登録されていません。
+              <% end %>
+              <strong><p class="name">アイテム名：<%= related_item.name %></p></strong>
+              <strong><p class="brand">ブランド名：<%= related_item.brand %></p></strong>
+              <strong><p class="color">カラー：<%= related_item.color %></p></strong>
+              <%= form_with model: @related_item, url: user_item_related_items_confirm_path, method: :post, local: true do |f| %>
+                <%= f.hidden_field :item_id, value: related_item.id %>
+                <%= f.submit "関連アイテムに追加する", class:"btn-flat-success" %>
+              <% end %>
+            </div>
+          </div>
         </ul>
       <% end %>
     </div>
   </div>
+  <%= paginate @items %>
 </div>

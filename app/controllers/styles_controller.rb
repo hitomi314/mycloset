@@ -7,7 +7,7 @@ class StylesController < ApplicationController
 
   def show
     @style = Style.find(params[:id])
-    @items = @style.items
+    @items = @style.items.page(params[:page]).per(15).order(created_at: :desc)
     @user = current_user
     if @style.user != current_user
       redirect_to mypage_path
@@ -24,8 +24,7 @@ class StylesController < ApplicationController
     @style = Style.new(style_params)
     @style.user_id = current_user.id
     if @style.save
-      flash[:succes] = '登録に成功しました'
-      redirect_to new_user_style_path(current_user)
+      redirect_to new_user_style_path(current_user), notice: "スタイルを登録しました"
     else
       @styles = current_user.styles
       @user = current_user
@@ -44,8 +43,7 @@ class StylesController < ApplicationController
   def update
     @style = Style.find(params[:id])
      if @style.update(style_params)
-      flash[:succes] = '情報が更新しました'
-      redirect_to new_user_style_path(current_user)
+      redirect_to new_user_style_path(current_user), notice: "スタイルを更新しました"
      else
       @user = current_user
       render :edit
@@ -55,7 +53,7 @@ class StylesController < ApplicationController
   def destroy
     @style = Style.find(params[:id])
     @style.destroy
-    redirect_to new_user_style_path(current_user)
+    redirect_to new_user_style_path(current_user), notice: "スタイルを削除しました"
   end
 
   private

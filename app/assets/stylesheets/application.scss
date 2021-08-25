@@ -17,3 +17,46 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+div {
+  margin: 5px;
+}
+
+p {
+  margin: 5px;
+}
+
+.img{
+  height: 500px;
+  width : 100%;
+}
+
+.link_btn{
+  text-decoration: none;
+}
+
+.slick-dots {
+  li {
+    font-size: 20px !important;
+    button:before {
+      content: "★" !important;
+      font-size: 14px !important;
+      color: rgb(60, 60, 60) !important;
+    }
+  }
+}
+
+.nav-link{
+  color: #330000;
+}
+
+
+.nav-item-content {
+  white-space: nowrap;
+}
+

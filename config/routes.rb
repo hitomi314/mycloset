@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'homes#top'
-  get 'search' => 'searchs#search'
+  get 'saerch' => 'saerch#saerch'
   get 'mypage' => 'users#mypage', as:'mypage'
   get 'mypage/edit' => 'users#edit', as:'edit_mypage'
+  get ' user/bookmarks' => 'bookmarks#index', as:'user_bookmarks'
       #resourceでeditを作成するとdeviseのedit_user_registrationパスと同じURIになるため、個別にURとパスを作成して対応
     patch 'mypage/edit' => 'users#update'
       #resourceでupdateを作成すると、上記のuserパスに対してpatchはあるが、edit_userパスにはpatchがないため、ルーティングエラーが発生する
@@ -14,15 +15,17 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :categories
     resources :styles
-    resources :bookmarks, only: [:index, :create, :destroy]
     resources :items do
-      resources :related_items, only: [:create, :destroy]
-         get 'related_items/category',to: 'related_items#category'
-         get 'related_items/select',to: 'related_items#select'
-         post 'related_items/confirm',to: 'related_items#confirm'
+      resources :related_items, only: [ :destroy]
+         get 'related_items/categories',to: 'related_items#category', as:"related_items_category"
+         get 'related_items/categories/:id',to: 'related_items#select', as:"related_items_select"
+         get 'related_items/confirm',to: 'related_items#confirm'
+         post 'related_items/confirm',to: 'related_items#add'
+        # delete 'related_items/destroy_all' => 'related_items#destroy_all', as:'related_items_destroy_all'
       resources :images, only: [:create, :destroy]
       resources :reviews do
-        resources :favorites, only: [:create, :destroy]
+        resource :favorites, only: [:create, :destroy]
+        resources :bookmarks, only: [:create, :destroy]
       end
     end
   end

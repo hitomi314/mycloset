@@ -31,9 +31,11 @@ ActiveRecord::Schema.define(version: 2021_08_16_024928) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "review_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["review_id"], name: "index_favorites_on_review_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "images", force: :cascade do |t|
@@ -67,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_08_16_024928) do
 
   create_table "related_items", force: :cascade do |t|
     t.integer "item_id"
+    t.integer "parentitem_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_related_items_on_item_id"
@@ -76,6 +79,8 @@ ActiveRecord::Schema.define(version: 2021_08_16_024928) do
     t.integer "user_id"
     t.integer "item_id"
     t.integer "rate"
+    t.string "name"
+    t.string "brand"
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @items = @category.items
+    @items = @category.items.page(params[:page]).per(15).order(created_at: :desc)
     @user = current_user
     if @category.user != current_user
       redirect_to mypage_path
@@ -24,8 +24,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     @category.user_id = current_user.id
     if @category.save
-      flash[:succes] = '登録に成功しました'
-      redirect_to new_user_category_path(current_user)
+      redirect_to new_user_category_path(current_user), notice: "カテゴリーを登録しました"
     else
       @categories = current_user.categories
       @user = current_user
@@ -44,8 +43,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
      if @category.update(category_params)
-      flash[:succes] = '情報が更新しました'
-      redirect_to new_user_category_path(current_user)
+      redirect_to new_user_category_path(current_user), notice: "カテゴリーを更新しました"
      else
       @user = current_user
       render :edit
@@ -55,7 +53,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
-    redirect_to new_user_category_path(current_user)
+    redirect_to new_user_category_path(current_user), notice: "カテゴリーを削除しました"
   end
 
   private

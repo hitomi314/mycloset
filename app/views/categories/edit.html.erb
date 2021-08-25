@@ -6,12 +6,27 @@
     <% end %>
   <% end %>
   <div class="row">
-    <div class="col-5-text_center">
-      <h4>カテゴリー編集</h4>
-        <%= form_with model: @category, url: user_category_path(@user, @category), local:true do |f| %>
-          <p>カテゴリー名</p>
-          <p><%= f.text_field :name %></p>
-          <%= f.submit '更新' %>
-        <% end %>
+    <div class="col-md-3 text-left">
+    </div>
+    <div class="col-md-4 text-center" style="margin: 15px 0 15px 0;">
+      <h3 style="background-color: #eeeeee;">カテゴリー編集</h3>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-8 ml-md-auto">
+      <%= form_with model: @category, url: user_category_path(@user, @category), local:true do |f| %>
+        <table>
+          <tr><%= f.label :"カテゴリー名" %></tr>
+            <td><%= f.text_field :name %></td>
+          <tr>
+            <td>
+              <div class="actions">
+                <%= f.submit "更新", :class => "btn btn-outline-secondary btn-block" %>
+              </div>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>
