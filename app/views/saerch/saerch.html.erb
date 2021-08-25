@@ -1,13 +1,45 @@
 <% if @model == 'reviewname' %>
-  <h3>"<%= @content %>"のレビュー（アイテム名）検索結果</h3>
-  <%= render 'saerch/review'%>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 text-left">
+        <p><strong style="font-size: 25px;">"<%= @content %>"のレビュー（アイテム名）検索結果</strong></p>
+      </div>
+    </div>
+    <div class="row">
+      <%= render 'saerch/review'%>
+    </div>
+  </div>
 <% elsif @model == 'reviewbrand' %>
-  <h3>"<%= @content %>"のレビュー（ブランド名）検索結果</h3>
-  <%= render 'saerch/review'%>
+    <div class="container">
+    <div class="row">
+      <div class="col-md-10 text-left">
+        <p><strong style="font-size: 25px;">"<%= @content %>"のレビュー（ブランド名）検索結果</strong></p>
+      </div>
+    </div>
+    <div class="row">
+      <%= render 'saerch/review'%>
+    </div>
+  </div>
 <% elsif @model == 'itemname' %>
-  <h3>"<%= @content %>"のアイテム（アイテム名）検索結果</h3>
-  <%= render 'saerch/item' %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 text-left">
+        <p><strong style="font-size: 25px;">"<%= @content %>"のアイテム（アイテム名）検索結果</strong></p>
+      </div>
+    </div>
+    <div class="main">
+      <%= render 'saerch/item' %>
+    </div>
+  </div>
 <% else @model == 'itembrand' %>
-  <h3>"<%= @content %>"のアイテム（ブランド名）検索結果</h3>
-  <%= render 'saerch/item'%>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 text-left">
+        <p><strong style="font-size: 25px;">"<%= @content %>"のアイテム（ブランド名）検索結果</strong></p>
+      </div>
+    </div>
+    <div class="main">
+      <%= render 'saerch/item' %>
+    </div>
+  </div>
 <% end %>

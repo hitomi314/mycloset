@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = current_user.items.page(params[:page]).per(20)
+    @items = current_user.items.page(params[:page]).per(15).order(created_at: :desc)
     @user = current_user
   end
 
@@ -26,8 +26,7 @@ class ItemsController < ApplicationController
     @categories = current_user.categories
     @styles = current_user.styles
     if @item.save
-      flash[:succes] = 'アイテムがクローゼットに入りました'
-      redirect_to user_item_path(current_user, @item)
+      redirect_to user_item_path(current_user, @item), notice: "アイテムがクローゼットに入りました"
     else
       render :new
     end
@@ -47,8 +46,7 @@ class ItemsController < ApplicationController
     @categories = current_user.categories
     @styles = current_user.styles
      if @item.update(item_params)
-      flash[:succes] = 'アイテム情報が更新しました'
-      redirect_to user_item_path(current_user, @item)
+      redirect_to user_item_path(current_user, @item), notice: "アイテム情報が更新しました"
      else
       render :edit
      end
@@ -57,7 +55,7 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-    redirect_to user_items_path(current_user)
+    redirect_to user_items_path(current_user), notice: "アイテムを削除しました"
   end
 
   private

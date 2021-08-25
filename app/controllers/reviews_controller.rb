@@ -7,8 +7,12 @@ class ReviewsController < ApplicationController
      when "0"
        reviews = @user.reviews.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
        @reviews = Kaminari.paginate_array(reviews).page(params[:page]).per(20)
+     when "1"
+       @reviews = @user.reviews.page(params[:page]).per(20).order(created_at: :desc)
+     when "2"
+       @reviews = @user.reviews.page(params[:page]).per(20).order(created_at: :asc)
      else
-       @reviews = @user.reviews.page(params[:page]).per(20)
+       @reviews = @user.reviews.page(params[:page]).per(20).order(created_at: :desc)
     end
   end
 
@@ -33,8 +37,7 @@ class ReviewsController < ApplicationController
     @review.item_id = @item.id
     @review.user_id = current_user.id
     if @review.save
-      flash[:succes] = 'アイテムがクローゼットに入りました'
-      redirect_to user_item_review_path(@user, @item, @review)
+      redirect_to user_item_review_path(@user, @item, @review), notice: "レビューを投稿しました"
     else
       render :new
     end
@@ -55,8 +58,7 @@ class ReviewsController < ApplicationController
     @item = Item.find(params[:item_id])
     @user = current_user
      if @review.update(review_params)
-      flash[:succes] = 'アイテム情報が更新しました'
-      redirect_to user_item_review_path(@user, @item, @review)
+      redirect_to user_item_review_path(@user, @item, @review), notice: "レビューを更新しました"
      else
       render :edit
      end
@@ -67,7 +69,7 @@ class ReviewsController < ApplicationController
     # @item = Item.find(params[:item_id])
     @user = current_user
     @review.destroy
-    redirect_to user_item_reviews_path(@user)
+    redirect_to user_item_reviews_path(@user), notice: "レビューを削除しました"
   end
 
   def search

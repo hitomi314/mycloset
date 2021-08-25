@@ -1,0 +1,29 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        sex: 性別
+        name: ユーザーネーム
+        email: メールアドレス
+        password: パスワード
+        blank: "が入力されていません。"
+      item: #Itemモデル
+        name: アイテム名
+        brand: ブランド名
+        category: カテゴリー
+        style: スタイル
+        blank: "が入力されていません。"
+      review: #Reviewモデル
+        name: アイテムのアイテム名
+        brand: アイテムのブランド名
+        rate: 評価
+        text: レビューコメント
+        blank: "が入力されていません。"
+      category: #Categoryモデル
+        name: カテゴリー名
+        blank: "が入力されていません。"
+      style: #Styleモデル
+        name: スタイル名
+        blank: "が入力されていません。"
+    errors:
+     messages: メッセージ

@@ -6,10 +6,14 @@
     <% end %>
   <% end %>
   <div class="row">
-    <div class="col-md-5 text-center" style="margin: 15px 0 15px 0;">
+    <div class="col-md-3 text-left">
+    </div>
+    <div class="col-md-6 text-center" style="margin: 15px 0 15px 0;">
       <h3 style="background-color: #eeeeee;"><%= @item.name %>のレビューを書く</h3>
     </div>
-    <div class = "col-8">
+  </div>
+  <div class="row">
+    <div class = "col-md-6 offset-md-3">
       <% if @item.images.present? %>
         <% @item.images.each do |image| %>
           <%= attachment_image_tag image, :image, :fill, 100, 150, format: 'jpeg', class: "default_image" %>
@@ -17,7 +21,7 @@
       <% else %>
         画像は登録されていません。
       <% end %>
-      <table>
+      <table class ="table">
         <thead></thead>
         <tbody>
             <tr class="mb-5">
@@ -65,7 +69,7 @@
     </div>
   </div>
   <div class="row">
-   <div class="col-8 mx-auto">
+   <div class="col-md-6 offset-md-3">
     <h4 class="mt-5"></h4>
     <%= form_with model: @review, url: user_item_reviews_path, method: :post, local:true do |f|  %>
       <div class="form-group" id="star">

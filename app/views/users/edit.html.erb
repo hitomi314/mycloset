@@ -1,8 +1,21 @@
 <div class="container">
-  <div class="row my-3">
-    <div class="ccol-lg-11 offset-lg-1">
+  <% if @user.errors.any? %>
+    <%= @user.errors.count %>件のエラーが発生しました
+    <% @user.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+ <div class="row">
+    <div class="col-md-3 text-center">
+    </div>
+    <div class="col-md-7 text-center" style="margin: 15px 0 15px 0;">
+      <h3 style="background-color: #eeeeee;">ユーザー編集</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
       <%= form_with model:@user, url:edit_mypage_path, local:true do |f| %>
-      <table class="user_table">
+      <table class="table">
         <tr>
           <th class="customer_edit_th">メールアドレス</th>
           <td><%= f.text_field :email %></td>
@@ -45,14 +58,16 @@
         </tr>
       </table>
 
-      <div>
-        <%= f.submit "編集内容を保存",class: "btn btn-sm btn-success" %>
-        <% end %>
-      </div>
-      <br>
-      <div>
-        <%= link_to "退会する",users_caution_path , method: :POST, class: "btn btn-sm btn-danger" %>
-      </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <%= f.submit "編集内容を保存",class: "btn btn-sm btn-success p-3" %>
+      <% end %>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <%= link_to "退会する",users_caution_path , method: :POST, class: "btn btn-sm btn-danger p-1" %>
+    </div>
+  </div>
   </div>
 </div>

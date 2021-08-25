@@ -1,11 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2 text-left">
+    <div class="col-md-10 text-left">
       <p><strong style="font-size: 25px;">レビュー一覧</strong>（全<%= @reviews.count %>件）</p>
     </div>
   </div>
   <div class="row">
-    <%= link_to "いいね数の多い順で表示",user_item_reviews_path(sort: 0) %>
+    <div class="col-3"><%= link_to "いいね数の多い順で表示",user_item_reviews_path(sort: 0) %></div>
+    <div class="col-3"><%= link_to "新しい順で表示",user_item_reviews_path(sort: 1) %></div>
+    <div class="col-3"><%= link_to "古い順で表示",user_item_reviews_path(sort: 2) %></div>
     <%= render 'reviews/table', reviews: @reviews %>
   </div>
   <%= paginate @reviews %>

@@ -12,4 +12,8 @@ class Item < ApplicationRecord
 
   enum item_sex: { ユニセックス: 0,メンズ: 1,レディース: 2,キッズ: 3,ボーイズ: 4,ガールズ: 5,ベビー: 6}
   enum season: { オールシーズン: 0,春夏: 1,秋冬: 2}
+
+  validates :name, presence: true
+  # validates :body, presence: true
+
 end

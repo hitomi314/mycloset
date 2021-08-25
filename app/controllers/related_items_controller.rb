@@ -16,7 +16,7 @@ class RelatedItemsController < ApplicationController
   def confirm
     @item = Item.find(params[:item_id])
     @user = current_user
-    @related_items = RelatedItem.where(parentitem_id: params[:item_id])
+    @related_items = RelatedItem.where(parentitem_id: params[:item_id]).order(created_at: :desc)
     # @related_items = @item.related_items
     # @items = []
     # @related_items.each do |reitem|
@@ -36,13 +36,13 @@ class RelatedItemsController < ApplicationController
       @related_item.item_id = params[:related_item][:item_id]
     end
     @related_item.save
-    redirect_to user_item_related_items_confirm_path
+    redirect_to user_item_related_items_confirm_path, notice: "関連アイテムを登録しました"
   end
 
   def destroy
     @related_item = RelatedItem.find(params[:id])
     @related_item.destroy
-    redirect_to user_item_related_items_confirm_path
+    redirect_to user_item_related_items_confirm_path, notice: "関連アイテムを削除しました"
   end
 
   # def destroy_all

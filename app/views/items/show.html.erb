@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-mt-30 text-center">
+    <div class="col-mt-5 text-center">
       <% if @item.images.present? %>
         <% @item.images.each do |image| %>
           <%= attachment_image_tag image, :image, :fill, 250, 300, format: 'jpeg', class: "default_image" %>
@@ -9,8 +9,8 @@
         画像は登録されていません。
       <% end %>
     </div>
-    <div class = "col-8">
-      <table>
+    <div class = "col-6">
+      <table class ="table">
         <thead></thead>
         <tbody>
             <tr class="mb-5">

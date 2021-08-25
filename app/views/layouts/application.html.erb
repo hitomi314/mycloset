@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
@@ -15,33 +15,40 @@
   </head>
 
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-white border">
+    <nav class="navbar navbar-expand-lg text-nowrap text-monospace text-light navbar-dark bg-dark border">
       <div class="container">
-        <%= link_to root_path do %>
-          <strong class="text-left">MyCloset</strong>
-        <% end %>
-        <% if user_signed_in? %>
-          <span class="fas text-danger "><%= current_user.name %>'s Closet</span>
-        <% end %>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-            <li><%= link_to ' マイページ',mypage_path ,class: 'fas fa-address-card nav-link text-danger' %></li>
-            <li><%= link_to ' ブックマーク',user_bookmarks_path(current_user) ,class: 'fas fa-bookmark nav-link text-danger' %></li>
-            <li><%= link_to ' アイテム',user_items_path(current_user) ,class: 'fas fa-tshirt nav-link text-danger'%></li>
-            <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-danger' %></li>
-            <li ><%= render 'saerch/form' %></li>
-          <% end %>
-          </ul>
+          <h1><%= link_to "MyCloset", root_path, class: "text-light text-decoration-none text-left mt-4 header-logo text-white"%></h1>
+          <div class="collapse navbar-collapse ml-5" id="navbarNavDropdown">
+            <% if user_signed_in? %>
+            <ul class="nav-item"><P><%= current_user.name %>'s Closet</p></ul>
+            <ul class="nav-item"><%= link_to ' マイページ',mypage_path ,class: 'fas fa-address-card nav-link text-warning' %></ul>
+            <ul class="nav-item"><%= link_to ' ブックマーク',user_bookmarks_path ,class: 'fas fa-bookmark nav-link text-warning' %></ul>
+            <ul class="nav-item"><%= link_to ' アイテム',user_items_path(current_user) ,class: 'fas fa-tshirt nav-link text-warning'%></ul>
+            <ul class="nav-item"><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-warning' %></ul>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% if user_signed_in? %>
+        <%= render 'saerch/form' %>
+      <% end %>
     </nav>
   </header>
 
   <body>
+    <div class="container">
+      <div class="row my-2">
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+        <div class="text-success">
+          <% if flash[:notice] %>
+            <div class="flash">
+              <%= flash[:notice]%>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>

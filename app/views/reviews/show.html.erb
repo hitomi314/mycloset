@@ -1,8 +1,48 @@
 <% if @review.present? %>
 <div class="container">
   <div class="row">
-    <div class="col-mt-30 text-center">
-      <h3><%= @item.name %>のレビュー</h3>
+    <div class="col-4">
+      <h3 class="bg-dark text-white p-1">レビューユーザー</h3>
+      <table class="table">
+        <today>
+          <tr>
+            <th>ユーザーネーム</th>
+            <th class="name"><%= link_to @review.user.name,user_path(@review.user) %></th>
+          </tr>
+          <tr>
+            <th>性別</th>
+            <th class="sex"><%= @review.user.sex %></th>
+          </tr>
+          <tr>
+            <th>身長</th>
+            <th class="height"><%= @review.user.height %></th>
+          </tr>
+          <tr>
+            <th>体重</th>
+            <th class="weight"><%= @review.user.weight %></th>
+          </tr>
+          <tr>
+            <th>骨格</th>
+            <th class="skelton"><%= @review.user.skelton %></th>
+          </tr>
+          <tr>
+            <th>体型</th>
+            <th class="body"><%= @review.user.body %></th>
+          </tr>
+          <tr>
+            <th>普段着ているサイズ</th>
+            <th class="close_size"><%= @review.user.close_size %></th>
+          </tr>
+          <tr>
+            <th>パーソナルカラー</th>
+            <th class="pasonal_color"><%= @review.user.pasonal_color %></th>
+          </tr>
+          <tr>
+        </today>
+      </table>
+    </div>
+    <div class="col-6 text-left">
+      <h3 class="bg-dark text-white p-1"><%= @item.name %>のレビュー</h3>
       <% if @images.present? %>
         <% @images.each do |image| %>
           <%= attachment_image_tag image, :image, :fill, 250, 300, format: 'jpeg', class: "default_image" %>
@@ -10,88 +50,85 @@
       <% else %>
         画像は登録されていません。
       <% end %>
-    </div>
-    <div class = "col-8">
-      <table>
+      <table class="table">
         <thead></thead>
         <tbody>
-            <tr class="mb-5">
-              <td>アイテム名</td>
-              <td><%= @review.name %></td>
-            </tr>
-            <tr>
-              <td>ブランド名</td>
-              <td><%= @review.brand %></td>
-            </tr>
-            <tr>
-              <td>カラー</td>
-              <td><%= @item.color %></td>
-            </tr>
-            <tr>
-              <td>カラーコード</td>
-              <td style="background-color:<%= @item.color_code %>"></td>
-            </tr>
-            <tr>
-              <td>ウェアセックス</td>
-              <td><%= @item.item_sex %></td>
-            </tr>
-            <tr>
-              <td>サイズ</td>
-              <td><%= @item.size %></td>
-            </tr>
-            <tr>
-              <td>素材</td>
-              <td><%= @item.material %></td>
-            </tr>
-            <tr>
-              <td>季節</td>
-              <td><%= @item.season %></td>
-            </tr>
-            <tr>
-              <td>購入日</td>
-              <td><%= @item.buy_day %></td>
-            </tr>
-            <tr>
-              <td>購入価格</td>
-              <td><%= @item.price %>円</td>
-            </tr>
+          <tr class="mb-5">
+            <td>アイテム名</td>
+            <td><%= @review.name %></td>
+          </tr>
+          <tr>
+            <td>ブランド名</td>
+            <td><%= @review.brand %></td>
+          </tr>
+          <tr>
+            <td>カラー</td>
+            <td><%= @item.color %></td>
+          </tr>
+          <tr>
+            <td>カラーコード</td>
+            <td style="background-color:<%= @item.color_code %>"></td>
+          </tr>
+          <tr>
+            <td>ウェアセックス</td>
+            <td><%= @item.item_sex %></td>
+          </tr>
+          <tr>
+            <td>サイズ</td>
+            <td><%= @item.size %></td>
+          </tr>
+          <tr>
+            <td>素材</td>
+            <td><%= @item.material %></td>
+          </tr>
+          <tr>
+            <td>季節</td>
+            <td><%= @item.season %></td>
+          </tr>
+          <tr>
+            <td>購入日</td>
+            <td><%= @item.buy_day %></td>
+          </tr>
+          <tr>
+            <td>購入価格</td>
+            <td><%= @item.price %>円</td>
+          </tr>
+        </today>
       </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <h5><レビュー></h5>
-      <div class="my-2">
-          <div class="d-inline-block">
-              <span class="ml-2" id="rate">評価：<%= @review.rate %></span>
-              <!--星評価-->
-               <span id="star-rate-<%= @review.id %>"></span>
-                <script>
-                $('#star-rate-<%= @review.id %>').raty({
-                  size: 36,
-                  starOff:  '<%= asset_path('star-off.png') %>',
-                  starOn : '<%= asset_path('star-on.png') %>',
-                  score: <%= @review.rate %>,
-                });
-                </script>
-              <!--/星評価-->
-              <span class="ml-5 pl-5"><%= @review.created_at.strftime("%Y/%m/%d") %></span>
-          </div>
-          <p class="d-block mt-3"><%= @review.text %></p>
-          <p id="favo_<%= @review.id %>"><%#= render 'reviews/favo', review: @review %></p>
-          <p>
-            <% if @review.bookmarked_by?(current_user) %>
-              <td><%= link_to "ブックマークを外す", user_bookmarks_path(@review), method: :delete %></td>
-            <% else %>
-              <td><%= link_to "ブックマーク", user_bookmarks_path(@review), method: :post %></td>
-            <% end %>
-          </p>
+      <div class="text-left">
+      <h5>＜レビュー＞</h5>
+        <div class="d-inline-block">
+          <span class="ml-1" id="rate">評価：<%= @review.rate %></span>
+          <!--星評価-->
+          <span id="star-rate-<%= @review.id %>"></span>
+            <script>
+            $('#star-rate-<%= @review.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              score: <%= @review.rate %>,
+            });
+            </script>
+          <!--/星評価-->
+          <span class="ml-5 pl-5"><%= @review.created_at.strftime("%Y/%m/%d") %></span>
+        </div>
+        <p class="d-block mt-3"><%= @review.text %></p>
+        <p id="favo_<%= @review.id %>" style="font-size: 20px;">
+          <%= render 'reviews/favo', review: @review %>
+        </p>
+        <p>
+        <% if @review.bookmarked_by?(current_user) %>
+          <td><%= link_to "ブックマークを外す", user_item_review_bookmark_path(@review.user_id, @review.item_id,@review), method: :delete, :class => "btn btn-primary btn-block" %></td>
+        <% else %>
+          <td><%= link_to "ブックマークする", user_item_review_bookmarks_path(@review.user_id, @review.item_id,@review), method: :post, :class => "btn btn-outline-secondary btn-block" %></td>
+        <% end %>
+        </p>
       </div>
     </div>
   </div>
   <% if @review.user == current_user %>
   <div class="row" style="font-size: 13px; margin-top: 10px;">
-   <div class="col-md-8 text-center">
+   <div class="col-md-8 offset-md-3">
       <div class="actions">
         <%= link_to "編集する", edit_user_item_review_path(@user, @item, @review), :class => "btn btn-success btn-block" %>
       </div>
