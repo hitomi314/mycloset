@@ -1,4 +1,5 @@
 <div class="container px-5 px-sm-0">
+<div class="top">
   <div class="row">
     <div class="col-4">
       <%= render 'users/info', user: @user, items: @items %>
@@ -17,6 +18,7 @@
       </div>
       <div class="list-group">
         <%= link_to ' 投稿レビュー',user_item_reviews_path(@user, @items) ,class: 'fas fa-paste fa-lg list-group-item list-group-item-action list-group-item-primary p-5 mt-3'%>
-      </div>
+    </div>
   </div>
+</div>
 </div>
