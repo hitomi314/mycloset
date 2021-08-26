@@ -17,6 +17,20 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+$item_color: lightskyblue;
+// #87CEFA
+$category_color: powderblue;
+// #B0E0E6
+$style_color: palegreen;
+// #98FB98
+$review_color: plum;
+// #DDA0DD
+$reitem_color: lightcyan;
+// #E0FFFF
+$bookmark_color: lavender;
+// #E6E6FA
+
+
 * {
   margin: 0;
   padding: 0;
@@ -28,7 +42,33 @@ div {
 }
 
 p {
-  margin: 5px;
+  margin: 0px;
+  padding: 2px;
+
+  &.item {
+    background: $item_color;
+  }
+
+  &.category {
+    background: $category_color;
+  }
+
+  &.style {
+    background: $style_color;
+  }
+
+  &.review {
+    background: $review_color;
+  }
+
+  &.reitem {
+    background: $reitem_color;
+  }
+
+  &.bookmark {
+    background: $bookmark_color;
+  }
+
 }
 
 .img{

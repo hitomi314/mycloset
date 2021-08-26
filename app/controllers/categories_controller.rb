@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-
   def index
     @categories = current_user.categories
     @user = current_user
@@ -42,12 +41,12 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-     if @category.update(category_params)
+    if @category.update(category_params)
       redirect_to new_user_category_path(current_user), notice: "カテゴリーを更新しました"
-     else
+    else
       @user = current_user
       render :edit
-     end
+    end
   end
 
   def destroy
@@ -57,8 +56,8 @@ class CategoriesController < ApplicationController
   end
 
   private
+
   def category_params
     params.require(:category).permit(:name)
   end
-
 end

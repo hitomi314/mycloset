@@ -1,18 +1,17 @@
 class ReviewsController < ApplicationController
-
   def index
     @user = current_user
     @reviews = @user.reviews.page(params[:page]).per(20)
     case params[:sort]
-     when "0"
-       reviews = @user.reviews.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
-       @reviews = Kaminari.paginate_array(reviews).page(params[:page]).per(20)
-     when "1"
-       @reviews = @user.reviews.page(params[:page]).per(20).order(created_at: :desc)
-     when "2"
-       @reviews = @user.reviews.page(params[:page]).per(20).order(created_at: :asc)
-     else
-       @reviews = @user.reviews.page(params[:page]).per(20).order(created_at: :desc)
+    when "0"
+      reviews = @user.reviews.includes(:favorited_users).sort { |a, b| b.favorited_users.size <=> a.favorited_users.size }
+      @reviews = Kaminari.paginate_array(reviews).page(params[:page]).per(20)
+    when "1"
+      @reviews = @user.reviews.page(params[:page]).per(20).order(created_at: :desc)
+    when "2"
+      @reviews = @user.reviews.page(params[:page]).per(20).order(created_at: :asc)
+    else
+      @reviews = @user.reviews.page(params[:page]).per(20).order(created_at: :desc)
     end
   end
 
@@ -48,20 +47,20 @@ class ReviewsController < ApplicationController
     @item = Item.find(params[:item_id])
     @user = current_user
     @images = @item.images
-      if @review.user != current_user
-        redirect_to mypage_path
-      end
+    if @review.user != current_user
+      redirect_to mypage_path
+    end
   end
 
   def update
     @review = Review.find(params[:id])
     @item = Item.find(params[:item_id])
     @user = current_user
-     if @review.update(review_params)
+    if @review.update(review_params)
       redirect_to user_item_review_path(@user, @item, @review), notice: "レビューを更新しました"
-     else
+    else
       render :edit
-     end
+    end
   end
 
   def destroy
@@ -78,8 +77,8 @@ class ReviewsController < ApplicationController
   end
 
   private
-  def review_params
-    params.require(:review).permit(:rate, :text, :name, :brand )
-  end
 
+  def review_params
+    params.require(:review).permit(:rate, :text, :name, :brand)
+  end
 end

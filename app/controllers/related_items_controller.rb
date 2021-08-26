@@ -1,5 +1,4 @@
 class RelatedItemsController < ApplicationController
-
   def category
     @categories = current_user.categories
     @user = current_user
@@ -22,7 +21,7 @@ class RelatedItemsController < ApplicationController
     # @related_items.each do |reitem|
     #   item = Item.find(reitem.item_id)
     #   @items.push(item)
-      # pushでitems=[]の中に代入する変数（Item）：item = Item.find(reitem.item_id)を指定する
+    # pushでitems=[]の中に代入する変数（Item）：item = Item.find(reitem.item_id)を指定する
     # end
   end
 
@@ -30,7 +29,7 @@ class RelatedItemsController < ApplicationController
     @related_item = RelatedItem.new(related_item_params)
     @item = Item.find(params[:item_id])
     @related_item.parentitem_id = @item.id
-    if params[:related_item] == nil
+    if params[:related_item].nil?
       @related_item.item_id = params[:item_id]
     else
       @related_item.item_id = params[:related_item][:item_id]
@@ -58,5 +57,4 @@ class RelatedItemsController < ApplicationController
   def related_item_params
     params.require(:related_item).permit(:item_id)
   end
-
 end

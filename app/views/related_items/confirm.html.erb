@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10 text-left">
-      <p><strong style="font-size: 20px;"><%= @item.name %>関連アイテム一覧</strong>（全<%= @related_items.count %>件）</p>
+      <p class="reitem"><strong style="font-size: 20px;"><%= @item.name %>関連アイテム一覧</strong>（全<%= @related_items.count %>件）</p>
       <p><%= link_to "登録", user_item_related_items_category_path, class: "far fa-plus-square fa-lg" %></p>
        <!--<p><%#= link_to '全て削除する', user_item_related_items_destroy_all_path(@user,@item), method: :delete, class: "btn btn-danger" %></p>-->
     </div>

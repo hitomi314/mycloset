@@ -1,5 +1,4 @@
 class StylesController < ApplicationController
-
   def index
     @styles = current_user.styles
     @user = current_user
@@ -42,12 +41,12 @@ class StylesController < ApplicationController
 
   def update
     @style = Style.find(params[:id])
-     if @style.update(style_params)
+    if @style.update(style_params)
       redirect_to new_user_style_path(current_user), notice: "スタイルを更新しました"
-     else
+    else
       @user = current_user
       render :edit
-     end
+    end
   end
 
   def destroy
@@ -57,8 +56,8 @@ class StylesController < ApplicationController
   end
 
   private
+
   def style_params
     params.require(:style).permit(:name)
   end
-
 end

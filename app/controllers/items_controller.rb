@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
   def index
     @items = current_user.items.page(params[:page]).per(15).order(created_at: :desc)
     @user = current_user
@@ -8,16 +7,16 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @user = current_user
-     if @item.user != current_user
-        redirect_to mypage_path
-     end
+    if @item.user != current_user
+      redirect_to mypage_path
+    end
   end
 
   def new
     @item = Item.new
     @categories = current_user.categories
     @styles = current_user.styles
-  # @image = @item.images.build
+    # @image = @item.images.build
   end
 
   def create
@@ -36,20 +35,20 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @categories = current_user.categories
     @styles = current_user.styles
-      if @item.user != current_user
-        redirect_to mypage_path
-      end
+    if @item.user != current_user
+      redirect_to mypage_path
+    end
   end
 
   def update
     @item = Item.find(params[:id])
     @categories = current_user.categories
     @styles = current_user.styles
-     if @item.update(item_params)
+    if @item.update(item_params)
       redirect_to user_item_path(current_user, @item), notice: "アイテム情報が更新しました"
-     else
+    else
       render :edit
-     end
+    end
   end
 
   def destroy
@@ -59,8 +58,9 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
-    params.require(:item).permit(:category_id, :style_id, :name, :brand, :color, :color_code, :item_sex, :size, :material, :buy_day, :season, :price, images_images: [], related_items:[])
+    params.require(:item).permit(:category_id, :style_id, :name, :brand, :color, :color_code, :item_sex, :size, :material, :buy_day, :season, :price, images_images: [], related_items: [])
   end
-#images_images: []images(モデル名)_images(refileで画像投稿するときの規則名): [](複数投稿するときに必要)
+  # images_images: []images(モデル名)_images(refileで画像投稿するときの規則名): [](複数投稿するときに必要)
 end

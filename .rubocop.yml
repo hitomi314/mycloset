@@ -1,0 +1,35 @@
+inherit_from:
+  - .rubocop_airbnb.yml
+
+#ここにはrubocopでコード解析したくないファイルやフォルダを指定します
+AllCops:
+  Exclude:
+    - 'db/migrate/20210809024722_devise_create_users.rb'
+    - 'db/migrate/20210810024722_create_categories.rb'
+    - 'db/migrate/20210811024755_create_styles.rb'
+    - 'db/migrate/20210812022826_create_items.rb'
+    - 'db/migrate/20210813024531_create_images.rb'
+    - 'db/migrate/20210814024454_create_related_items.rb'
+    - 'db/migrate/20210815024342_create_reviews.rb'
+    - 'db/migrate/20210816024605_create_favorites.rb'
+    - 'db/migrate/20210816024928_create_bookmarks.rb'
+    - 'db/development.sqlite3'
+    - 'db/schema.rb'
+    - 'db/seeds.rb'
+    - 'db/test.sqlite3'
+    - 'db/**/*'
+    - 'bin/*'
+    - 'bin/bundle'
+    - 'bin/rails'
+    - 'bin/rake'
+    - 'bin/setup'
+    - 'bin/spring'
+    - 'bin/update'
+    - 'bin/yam'
+    - 'config/environments/*'
+    - 'config/application.rb'
+    - 'config/initializers/*'
+    - 'config/spring.rb'
+    - 'lib/tasks/*'
+    - 'vendor/**/*'
+    - 'path/ruby'
