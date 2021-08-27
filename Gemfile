@@ -74,6 +74,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'rails-i18n'
 gem 'rubocop-airbnb'
+gem 'rspec-rails'
 
 gem 'dotenv-rails'
 group :production do
@@ -83,3 +84,10 @@ end
 # group :development do
 #   gem 'rubocop', require: false
 # end
+
+group :test do
+  gem 'capybara', '>= 2.15'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
+end
