@@ -2,7 +2,7 @@
 <div class="top">
   <div class="row">
     <div class="col-4">
-      <%= render 'users/info', user: @user, items: @items %>
+      <%= render 'users/info', user: @user%>
       <%= link_to "", mypage_edit_path, class: "btn btn-outline-secondary btn-block fas fa-user-cog fa-lg" %>
       <%= link_to ' ブックマーク',user_bookmarks_path ,class: 'fas fa-bookmark text-danger ' %>
     </div>
