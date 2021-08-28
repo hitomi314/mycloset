@@ -5,9 +5,9 @@
         <div class="main_visual_top"></div>
         <div class="main_visual_image_box">
           <div class="main_visual_images">
-            <div class="image1"><img class="img" src="assets/image1.jpg"></div>
-            <div class="image2"><img class="img" src="assets/image2.jpg"></div>
-            <div class="image3"><img class="img" src="assets/image3.jpg"></div>
+            <div class="image1"><%= image_tag asset_path("image1.jpg", alt: "image1"), class:"img" %></div>
+            <div class="image2"><%= image_tag asset_path("image2.jpg", alt: "image2"), class:"img" %></div>
+            <div class="image3"><%= image_tag asset_path("image3.jpg", alt: "image2"), class:"img" %></div>
           </div>
         </div>
         <div class="main_visual_under"></div>
